@@ -22,6 +22,7 @@ bitwiseAnd = cv2.bitwise_and(im1,im2)/255.0
 
 #memasukkan method untuk mengurangi jumlah noise pada gambar sebelumnya yaiut gambar bitwise
 rmNoise = cv2.pow(bitwiseAnd,2.2)
+
 #memperbaiki kontras
 rnimg = cv2.imread("res_noise_removal.jpeg", 0)#mengambil data gambar noise removal
 equ = cv2.equalizeHist(rnimg)
@@ -31,6 +32,9 @@ img = cv2.imread('res_contrast.jpeg',0)
 histr1 = cv2.calcHist([img],[0],None,[256],[0,256])
 #memunculkan data plot histogram awal
 #----------------------------------------
+img2 = cv2.imread('res_final.jpeg',0)
+histr2 = cv2.calcHist([img2],[0],None,[256],[0,256])
+
 
 
 #THRESHOLDING
@@ -45,6 +49,8 @@ cv2.imshow("hasil bitwise", bitwiseAnd)
 cv2.imshow("hasil blur noise",rmNoise)
 cv2.imshow("hasil contrast",equ)
 cv2.imshow("hasil final",thresh1)
+plt.plot(histr1)
+plt.plot(histr2)
 plt.show()
 
 #----------------------------------------
